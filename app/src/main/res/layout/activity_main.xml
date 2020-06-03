@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+        android:id="@+id/main_card"
+        android:backgroundTint="#6500FF">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="assist-co"
+            android:textSize="50sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/product_sans"
+            android:textAlignment="center"
+            android:layout_marginTop="35dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10sp"
+        android:weightSum="100">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:backgroundTint="@color/colorUniversal"
+            android:text="PROFILE"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="10sp"
+            android:fontFamily="@font/product_sans"
+            style="@style/Widget.MaterialComponents.Button"
+            android:textStyle="bold"
+            app:cornerRadius="5sp"
+            android:textColor="#fff"
+            android:layout_marginBottom="5sp"
+            android:id="@+id/profile_btn"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="50"
+            android:layout_marginStart="10sp"
+            android:backgroundTint="@color/colorUniversal"
+            android:text="LOGOUT"
+            android:fontFamily="@font/product_sans"
+            android:onClick="logout"
+            style="@style/Widget.MaterialComponents.Button"
+            android:textStyle="bold"
+            android:layout_marginEnd="20sp"
+            app:cornerRadius="5sp"
+            android:textColor="#fff"
+            android:layout_marginBottom="10sp"
+            android:id="@+id/logout_btn"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

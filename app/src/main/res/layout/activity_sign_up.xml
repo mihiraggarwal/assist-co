@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".SignUpActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:id="@+id/signup_card"
+        android:backgroundTint="#6500FF">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="assist-co"
+            android:textSize="50sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/product_sans"
+            android:textAlignment="center"
+            android:layout_marginTop="60dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/signup_card"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:textColor="@color/colorUniversal"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/product_sans"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="30sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            app:hintEnabled="true"
+            android:textColorHint="@color/colorUniversal"
+            app:boxStrokeColor="@color/colorUniversal"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:fontFamily="@font/product_sans"
+                android:textColor="@color/colorUniversal"
+                android:textColorHint="@color/colorUniversal"
+                android:inputType="textPersonName"
+                android:id="@+id/name_signup"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            app:hintEnabled="true"
+            android:textColorHint="@color/colorUniversal"
+            app:boxStrokeColor="@color/colorUniversal"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:fontFamily="@font/product_sans"
+                android:textColor="@color/colorUniversal"
+                android:textColorHint="@color/colorUniversal"
+                android:inputType="textEmailAddress"
+                android:id="@+id/email_signup"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            app:hintEnabled="true"
+            android:textColorHint="@color/colorUniversal"
+            app:boxStrokeColor="@color/colorUniversal"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:fontFamily="@font/product_sans"
+                android:textColor="@color/colorUniversal"
+                android:textColorHint="@color/colorUniversal"
+                android:inputType="textPassword"
+                android:id="@+id/password_signup"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIGN UP"
+            android:layout_marginTop="50sp"
+            android:backgroundTint="@color/colorUniversal"
+            android:textColor="#fff"
+            android:fontFamily="@font/product_sans"
+            android:textStyle="bold"
+            android:layout_marginStart="100sp"
+            android:layout_marginEnd="100sp"
+            style="@style/Widget.MaterialComponents.Button"
+            android:onClick="signUp"
+            app:cornerRadius="5sp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:text="Already have an account? Login here"
+            android:textAllCaps="false"
+            android:textColor="@color/colorUniversal"
+            android:fontFamily="@font/product_sans"
+            android:onClick="goToLogin"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
