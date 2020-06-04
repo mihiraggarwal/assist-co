@@ -22,16 +22,17 @@ import java.util.Map;
 
 public class DetailsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private String name, email, phone, year, overview, website, servicesProvided, servicesRequired;
+    private String name, email, phone, year, overview, website, servicesProvided, servicesRequired, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        if (getIntent().hasExtra("name") && getIntent().hasExtra("email")){
+        if (getIntent().hasExtra("name") && getIntent().hasExtra("email") && getIntent().hasExtra("password")){
             name = getIntent().getStringExtra("name");
             email = getIntent().getStringExtra("email");
+            password = getIntent().getStringExtra("password");
 
             mAuth = FirebaseAuth.getInstance();
         }
@@ -56,6 +57,7 @@ public class DetailsActivity extends AppCompatActivity {
         Map<String, Object> user_details = new HashMap<>();
         user_details.put("name", name);
         user_details.put("email", email);
+        user_details.put("password", password);
         user_details.put("phone", phone);
         user_details.put("year_of_creation", year);
         user_details.put("website", website);

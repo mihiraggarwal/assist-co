@@ -26,4 +26,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
     }
+
+    public void goToProfile(View view) {
+        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+    }
 }
