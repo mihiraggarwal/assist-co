@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5sp"
+        android:backgroundTint="@color/colorUniversal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="5sp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:fontFamily="@font/product_sans"
+                android:textColor="#fff"
+                android:id="@+id/listitem_name"
+                android:layout_marginBottom="5dp"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listitem_overview"
+                android:text="Overview"
+                android:fontFamily="@font/product_sans"
+                android:textColor="#fff"
+                android:layout_marginBottom="5sp"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Services Provided"
+                android:textColor="#fff"
+                android:id="@+id/listitem_servicesProvided"
+                android:fontFamily="@font/product_sans"
+                android:layout_marginBottom="5sp"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
