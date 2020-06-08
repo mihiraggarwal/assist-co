@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
 
     private void insertCompanies() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
         db.collection("Users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -54,15 +54,20 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 Log.d(TAG, "onComplete: task successful");
-                                Company company = new Company();
-                                company.setName(documentSnapshot.getString("name"));
-                                company.setPhone(documentSnapshot.getString("phone"));
-                                company.setWebsite(documentSnapshot.getString("website"));
-                                company.setYear(documentSnapshot.getString("year_of_creation"));
-                                company.setOverview(documentSnapshot.getString("overview"));
-                                company.setServicesProvided("Services provided -> " + documentSnapshot.getString("services_provided"));
-                                company.setServicesRequired(documentSnapshot.getString("services_required"));
-                                mCompanies.add(company);
+                                if (documentSnapshot.getString("uid").equals(user.getUid())){
+                                    Log.d(TAG, "onComplete: " + "equal");
+                                }
+                                else {
+                                    Company company = new Company();
+                                    company.setName(documentSnapshot.getString("name"));
+                                    company.setPhone(documentSnapshot.getString("phone"));
+                                    company.setWebsite(documentSnapshot.getString("website"));
+                                    company.setYear(documentSnapshot.getString("year_of_creation"));
+                                    company.setOverview(documentSnapshot.getString("overview"));
+                                    company.setServicesProvided("Services provided -> " + documentSnapshot.getString("services_provided"));
+                                    company.setServicesRequired(documentSnapshot.getString("services_required"));
+                                    mCompanies.add(company);
+                                }
                             }
                             mCompaniesRecyclerAdapter.notifyDataSetChanged();
                         } else {
