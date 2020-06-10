@@ -14,7 +14,8 @@ import com.example.assist_co.models.Company;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class CompanyActivity extends AppCompatActivity {
-    private TextInputEditText nameet, phoneet, websiteet, yearet, overviewet, servicesProvidedet, servicesRequiredet;
+    private TextInputEditText emailet, phoneet, websiteet, yearet, overviewet, servicesProvidedet, servicesRequiredet;
+    private TextView nameet;
     private Company mInitialCompany;
     private String websiteUrl, test;
     private static final String TAG = "CompanyActivity";
@@ -25,6 +26,7 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
 
         nameet = findViewById(R.id.name_company);
+        emailet = findViewById(R.id.email_company);
         phoneet = findViewById(R.id.phone_company);
         websiteet = findViewById(R.id.website_company);
         yearet = findViewById(R.id.year_company);
@@ -40,6 +42,7 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void setCompanyProperties() {
         nameet.setText(mInitialCompany.getName());
+        emailet.setText(mInitialCompany.getEmail());
         phoneet.setText(mInitialCompany.getPhone());
         websiteet.setText(mInitialCompany.getWebsite());
         yearet.setText(mInitialCompany.getYear());

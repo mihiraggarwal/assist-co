@@ -28,7 +28,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Company Details"
+        android:text="Name"
+        android:id="@+id/name_company"
         android:textColor="@color/colorUniversal"
         android:textSize="40sp"
         android:fontFamily="@font/product_sans"
@@ -62,10 +63,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="Email"
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
-                android:id="@+id/name_company"
+                android:id="@+id/email_company"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
@@ -94,20 +95,19 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
+                android:hint="Year of creation"
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
-                android:id="@+id/phone_company"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:id="@+id/year_company"
                 android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -172,14 +172,14 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Year of creation"
+                android:hint="Phone Number"
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
+                android:id="@+id/phone_company"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:id="@+id/year_company"
                 android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>

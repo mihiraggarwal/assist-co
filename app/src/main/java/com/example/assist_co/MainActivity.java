@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
     private ArrayList<String> mDuplicate = new ArrayList<>();
     private List<String> mToCompare = new ArrayList<>();
 
-    private Dictionary <Integer, String> similarities = new Hashtable <Integer, String>();
+    //private Dictionary <Integer, String> similarities = new Hashtable <Integer, String>();
+    private Dictionary <String, Integer> similarities = new Hashtable <String, Integer>();
+
     private ArrayList lengths = new ArrayList();
     private ArrayList docIds = new ArrayList();
 
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                                 if (documentSnapshot.getString("uid").equals(user.getUid())) {
                                     // continue
                                 } else {
-                                    String[] splitter_other = documentSnapshot.getString("services_provided").split(",");
+                                    String[] splitter_other = documentSnapshot.getString("services_provided").split(", ");
                                     mToCompare = Arrays.asList(splitter_other);
                                     Log.d(TAG, "onComplete: " + mToCompare);
                                     List<String> checker = new ArrayList<>();
@@ -109,7 +111,9 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                                             checker.add(i);
                                         }
                                     }
-                                    similarities.put(size(checker), documentSnapshot.getString("docId"));
+                                    //similarities.put(size(checker), documentSnapshot.getString("docId"));
+                                    similarities.put(documentSnapshot.getString("docId"), size(checker));
+                                    Log.d(TAG, "onComplete: " + similarities);
                                 }
                             }
                             insertCompanies();
@@ -122,13 +126,22 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
     }
 
     private void insertCompanies() {
-        for (Enumeration i = similarities.keys(); i.hasMoreElements();){
+        for (Enumeration i = similarities.elements(); i.hasMoreElements();){
             lengths.add(i.nextElement());
         }
         Collections.sort(lengths, Collections.reverseOrder());
         Log.d(TAG, "onComplete: " + lengths);
         for (Object i : lengths){
-            docIds.add(similarities.get(i));
+            //docIds.add(similarities.get(i));
+            for (Enumeration k = similarities.keys(); k.hasMoreElements();){
+                Object n = k.nextElement();
+                Object t = similarities.get(n);
+                if (t == i){
+                    docIds.add(n);
+                    similarities.remove(n);
+                    break;
+                }
+            }
         }
         Log.d(TAG, "onComplete: " + similarities);
         Log.d(TAG, "onComplete: " + docIds);
@@ -147,12 +160,14 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                                 DocumentSnapshot documentSnapshot = task.getResult();
                                 Company company = new Company();
                                 company.setName(documentSnapshot.getString("name"));
+                                company.setEmail(documentSnapshot.getString("email"));
                                 company.setPhone(documentSnapshot.getString("phone"));
                                 company.setWebsite(documentSnapshot.getString("website"));
                                 company.setYear(documentSnapshot.getString("year_of_creation"));
                                 company.setOverview(documentSnapshot.getString("overview"));
                                 company.setServicesProvided("Services provided -> " + documentSnapshot.getString("services_provided"));
                                 company.setServicesRequired(documentSnapshot.getString("services_required"));
+                                Log.d(TAG, "onComplete: " + documentSnapshot.getString("docId"));
                                 mCompanies.add(company);
 
                                 mCompaniesRecyclerAdapter.notifyDataSetChanged();

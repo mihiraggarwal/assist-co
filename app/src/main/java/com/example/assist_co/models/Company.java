@@ -6,6 +6,7 @@ import android.os.Parcelable;
 public class Company implements Parcelable {
 
     private String name;
+    private String email;
     private String phone;
     private String website;
     private String year;
@@ -13,8 +14,9 @@ public class Company implements Parcelable {
     private String servicesProvided;
     private String servicesRequired;
 
-    public Company(String name, String phone, String website, String year, String overview, String servicesProvided, String servicesRequired) {
+    public Company(String name, String email, String phone, String website, String year, String overview, String servicesProvided, String servicesRequired) {
         this.name = name;
+        this.email = email;
         this.phone = phone;
         this.website = website;
         this.year = year;
@@ -28,6 +30,7 @@ public class Company implements Parcelable {
 
     protected Company(Parcel in) {
         name = in.readString();
+        email = in.readString();
         phone = in.readString();
         website = in.readString();
         year = in.readString();
@@ -54,6 +57,14 @@ public class Company implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone() {
@@ -108,6 +119,7 @@ public class Company implements Parcelable {
     public String toString() {
         return "Company{" +
                 "name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", website='" + website + '\'' +
                 ", year='" + year + '\'' +
@@ -125,6 +137,7 @@ public class Company implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
+        parcel.writeString(email);
         parcel.writeString(phone);
         parcel.writeString(website);
         parcel.writeString(year);
