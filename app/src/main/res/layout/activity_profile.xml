@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Profile"
@@ -15,13 +15,45 @@
         android:textSize="40sp"
         android:fontFamily="@font/product_sans"
         android:textAlignment="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintEnabled="true"
+        android:textColorHint="@color/colorUniversal"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        android:textAlignment="center"
+        app:boxCornerRadiusBottomEnd="5sp"
+        android:backgroundTint="#fff"
+        app:boxStrokeWidth="2dp"
+        app:boxCornerRadiusBottomStart="5sp"
+        app:boxCornerRadiusTopEnd="5sp"
+        app:boxCornerRadiusTopStart="5sp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:gravity="center"
+            android:fontFamily="@font/product_sans"
+            android:textColor="@color/colorUniversal"
+            android:textSize="40sp"
+            android:id="@+id/name_profile"
+            android:inputType="textPersonName"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="100"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="10sp"
         android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,11 +76,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="Turnover"
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
-                android:id="@+id/name_profile"
-                android:inputType="textPersonName"/>
+                android:id="@+id/turnover_profile"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,7 +216,7 @@
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
                 android:id="@+id/website_profile"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textWebEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -35,9 +35,9 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private TextInputEditText nameet, emailet, phoneet, passwordet, yearet, overviewet, websiteet;
+    private TextInputEditText nameet, emailet, phoneet, passwordet, yearet, turnoveret, overviewet, websiteet;
     private TextInputEditText servicesProvidedet, servicesRequiredet;
-    private String name, email, password, phone, year, overview, website, servicesProvided, servicesRequired;
+    private String name, email, password, phone, year, turnover, overview, website, servicesProvided, servicesRequired;
     private String oldEmail, oldPassword;
     private String doc;
     private MaterialButton delete_btn;
@@ -55,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         emailet = findViewById(R.id.email_profile);
         passwordet = findViewById(R.id.password_profile);
         overviewet = findViewById(R.id.overview_profile);
+        turnoveret = findViewById(R.id.turnover_profile);
         yearet = findViewById(R.id.year_profile);
         websiteet = findViewById(R.id.website_profile);
         servicesProvidedet = findViewById(R.id.servicesProvided_profile);
@@ -134,6 +135,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 passwordet.setText(documentSnapshot.getString("password"));
                                 websiteet.setText(documentSnapshot.getString("website"));
                                 yearet.setText(documentSnapshot.getString("year_of_creation"));
+                                turnoveret.setText(documentSnapshot.getString("turnover"));
                                 overviewet.setText(documentSnapshot.getString("overview"));
                                 servicesProvidedet.setText(documentSnapshot.getString("services_provided"));
                                 servicesRequiredet.setText(documentSnapshot.getString("services_required"));
@@ -156,6 +158,7 @@ public class ProfileActivity extends AppCompatActivity {
         //password = passwordet.getText().toString();
         phone = phoneet.getText().toString();
         year = yearet.getText().toString();
+        turnover = turnoveret.getText().toString();
         website = websiteet.getText().toString();
         overview = overviewet.getText().toString();
         servicesProvided = servicesProvidedet.getText().toString();
@@ -168,6 +171,7 @@ public class ProfileActivity extends AppCompatActivity {
         //user_details.put("password", password);
         user_details.put("phone", phone);
         user_details.put("year_of_creation", year);
+        user_details.put("turnover", turnover);
         user_details.put("website", website);
         user_details.put("overview", overview);
         user_details.put("services_provided", servicesProvided);
@@ -175,7 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(year) || TextUtils.isEmpty(overview) || TextUtils.isEmpty(website)
                 || TextUtils.isEmpty(servicesProvided) || TextUtils.isEmpty(servicesRequired) || TextUtils.isEmpty(phone)
-                || TextUtils.isEmpty(name) || TextUtils.isEmpty(email)){
+                || TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(turnover)){
             Toast.makeText(this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
         }
         else {

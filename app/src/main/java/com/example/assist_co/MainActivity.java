@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
     private ArrayList<String> mDuplicate = new ArrayList<>();
     private List<String> mToCompare = new ArrayList<>();
 
-    //private Dictionary <Integer, String> similarities = new Hashtable <Integer, String>();
     private Dictionary <String, Integer> similarities = new Hashtable <String, Integer>();
 
     private ArrayList lengths = new ArrayList();
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 String [] splitter = documentSnapshot.getString("services_required").split(", ");
                                 mCompare = Arrays.asList(splitter);
-                                Log.d(TAG, "onComplet: " + mCompare);
+                                Log.d(TAG, "onComplete_getuser: " + mCompare);
 
                                 initRecyclerView();
                                 findCompanies();
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
     }
 
     private void findCompanies() {
-        Log.d(TAG, "insertCompanies: running");
+        Log.d(TAG, "findCompanies: running");
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();
         db.collection("Users")
@@ -98,22 +97,21 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                Log.d(TAG, "onComplete: task successful");
+                                Log.d(TAG, "onComplete_findcompanies: task successful");
                                 if (documentSnapshot.getString("uid").equals(user.getUid())) {
                                     // continue
                                 } else {
                                     String[] splitter_other = documentSnapshot.getString("services_provided").split(", ");
                                     mToCompare = Arrays.asList(splitter_other);
-                                    Log.d(TAG, "onComplete: " + mToCompare);
+                                    Log.d(TAG, "onComplete_elsefindcompanies: " + mToCompare);
                                     List<String> checker = new ArrayList<>();
                                     for (String i : mToCompare) {
                                         if (mCompare.contains(i)) {
                                             checker.add(i);
                                         }
                                     }
-                                    //similarities.put(size(checker), documentSnapshot.getString("docId"));
                                     similarities.put(documentSnapshot.getString("docId"), size(checker));
-                                    Log.d(TAG, "onComplete: " + similarities);
+                                    Log.d(TAG, "onComplete_findcompanies end: " + similarities);
                                 }
                             }
                             insertCompanies();
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
             lengths.add(i.nextElement());
         }
         Collections.sort(lengths, Collections.reverseOrder());
-        Log.d(TAG, "onComplete: " + lengths);
+        Log.d(TAG, "onComplete_insertcompanies: " + lengths);
         for (Object i : lengths){
             //docIds.add(similarities.get(i));
             for (Enumeration k = similarities.keys(); k.hasMoreElements();){
@@ -143,39 +141,50 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
                 }
             }
         }
-        Log.d(TAG, "onComplete: " + similarities);
-        Log.d(TAG, "onComplete: " + docIds);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Log.d(TAG, "onComplete_insertcompanies end1: " + similarities);
+        Log.d(TAG, "onComplete_insertcompanies end2: " + docIds);
 
-        for (Object i : docIds){
-            Log.d(TAG, "insertCompanies: " + i.toString());
-            db.collection("Users")
-                    .document(i.toString())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()){
-                                Log.d(TAG, "onComplete: success");
-                                DocumentSnapshot documentSnapshot = task.getResult();
-                                Company company = new Company();
-                                company.setName(documentSnapshot.getString("name"));
-                                company.setEmail(documentSnapshot.getString("email"));
-                                company.setPhone(documentSnapshot.getString("phone"));
-                                company.setWebsite(documentSnapshot.getString("website"));
-                                company.setYear(documentSnapshot.getString("year_of_creation"));
-                                company.setOverview(documentSnapshot.getString("overview"));
-                                company.setServicesProvided("Services provided -> " + documentSnapshot.getString("services_provided"));
-                                company.setServicesRequired(documentSnapshot.getString("services_required"));
-                                Log.d(TAG, "onComplete: " + documentSnapshot.getString("docId"));
-                                mCompanies.add(company);
-
-                                mCompaniesRecyclerAdapter.notifyDataSetChanged();
-                            }
-                        }
-                    });
-
+        for (int j=0; j<docIds.size(); j++){
+            Object i = docIds.get(j);
+            Log.d(TAG, "insertCompanies properstart: " + i.toString());
+            Log.d(TAG, "TestStart "+ j +" " + i.toString());
+            mCompanies.add(companyInsert(i));
+            Log.d(TAG, "TestEnd "+ j +" " + i.toString());
         }
+        mCompaniesRecyclerAdapter.notifyItemInserted(mCompanies.size()-1);
+    }
+
+    private Company companyInsert(Object i) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Log.d(TAG, "TestFuncStart " + i.toString());
+        final Company company = new Company();
+        Task<DocumentSnapshot> task1 = db.collection("Users")
+                .document(i.toString())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            Log.d(TAG, "onComplete main: success");
+                            DocumentSnapshot documentSnapshot = task.getResult();
+//                            Company company = new Company();
+                            company.setName(documentSnapshot.getString("name"));
+                            company.setEmail(documentSnapshot.getString("email"));
+                            company.setPhone(documentSnapshot.getString("phone"));
+                            company.setWebsite(documentSnapshot.getString("website"));
+                            company.setTurnover(documentSnapshot.getString("turnover"));
+                            company.setYear(documentSnapshot.getString("year_of_creation"));
+                            company.setOverview(documentSnapshot.getString("overview"));
+                            company.setServicesProvided("Services provided -> " + documentSnapshot.getString("services_provided"));
+                            company.setServicesRequired(documentSnapshot.getString("services_required"));
+                            Log.d(TAG, "onComplete mainend: " + documentSnapshot.getString("docId"));
+                        }
+                    }
+                });
+
+        while(!task1.isComplete());
+        Log.d(TAG, "TestFuncEnd " + i.toString());
+        return company;
     }
 
     private void initRecyclerView() {
@@ -184,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements CompaniesRecycler
         mCompaniesRecyclerAdapter = new CompaniesRecyclerAdapter(mCompanies, this);
         mRecyclerView.setAdapter(mCompaniesRecyclerAdapter);
     }
-
 
     public void logout(View view) {
         mAuth.signOut();

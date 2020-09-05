@@ -1,8 +1,12 @@
 package com.example.assist_co;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +18,10 @@ import com.example.assist_co.models.Company;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class CompanyActivity extends AppCompatActivity {
-    private TextInputEditText emailet, phoneet, websiteet, yearet, overviewet, servicesProvidedet, servicesRequiredet;
+    private TextInputEditText emailet, phoneet, websiteet, yearet, turnoveret, overviewet, servicesProvidedet, servicesRequiredet;
     private TextView nameet;
     private Company mInitialCompany;
-    private String websiteUrl, test;
+    private String websiteUrl, emailId, phoneNumber, test;
     private static final String TAG = "CompanyActivity";
 
     @Override
@@ -30,6 +34,7 @@ public class CompanyActivity extends AppCompatActivity {
         phoneet = findViewById(R.id.phone_company);
         websiteet = findViewById(R.id.website_company);
         yearet = findViewById(R.id.year_company);
+        turnoveret = findViewById(R.id.turnover_company);
         overviewet = findViewById(R.id.overview_company);
         servicesProvidedet = findViewById(R.id.servicesProvided_company);
         servicesRequiredet = findViewById(R.id.servicesRequired_company);
@@ -46,6 +51,7 @@ public class CompanyActivity extends AppCompatActivity {
         phoneet.setText(mInitialCompany.getPhone());
         websiteet.setText(mInitialCompany.getWebsite());
         yearet.setText(mInitialCompany.getYear());
+        turnoveret.setText(mInitialCompany.getTurnover());
         overviewet.setText(mInitialCompany.getOverview());
         servicesProvidedet.setText(mInitialCompany.getServicesProvided().substring(21));
         servicesRequiredet.setText(mInitialCompany.getServicesRequired());
@@ -64,5 +70,31 @@ public class CompanyActivity extends AppCompatActivity {
         catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void goToEmail(View view) {
+        emailId = emailet.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + emailId));
+        try {
+            startActivity(intent);
+        }
+        catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void goToPhone(View view) {
+        phoneNumber = phoneet.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            try {
+                startActivity(intent);
+            }
+            catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 }

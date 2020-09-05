@@ -10,16 +10,18 @@ public class Company implements Parcelable {
     private String phone;
     private String website;
     private String year;
+    private String turnover;
     private String overview;
     private String servicesProvided;
     private String servicesRequired;
 
-    public Company(String name, String email, String phone, String website, String year, String overview, String servicesProvided, String servicesRequired) {
+    public Company(String name, String email, String phone, String website, String year, String turnover, String overview, String servicesProvided, String servicesRequired) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.website = website;
         this.year = year;
+        this.turnover = turnover;
         this.overview = overview;
         this.servicesProvided = servicesProvided;
         this.servicesRequired = servicesRequired;
@@ -34,6 +36,7 @@ public class Company implements Parcelable {
         phone = in.readString();
         website = in.readString();
         year = in.readString();
+        turnover = in.readString();
         overview = in.readString();
         servicesProvided = in.readString();
         servicesRequired = in.readString();
@@ -91,6 +94,14 @@ public class Company implements Parcelable {
         this.year = year;
     }
 
+    public String getTurnover() {
+        return turnover;
+    }
+
+    public void setTurnover(String turnover) {
+        this.turnover = turnover;
+    }
+
     public String getOverview() {
         return overview;
     }
@@ -123,6 +134,7 @@ public class Company implements Parcelable {
                 ", phone='" + phone + '\'' +
                 ", website='" + website + '\'' +
                 ", year='" + year + '\'' +
+                ", turnover='" + turnover + '\'' +
                 ", overview='" + overview + '\'' +
                 ", servicesProvided='" + servicesProvided + '\'' +
                 ", servicesRequired='" + servicesRequired + '\'' +
@@ -141,6 +153,7 @@ public class Company implements Parcelable {
         parcel.writeString(phone);
         parcel.writeString(website);
         parcel.writeString(year);
+        parcel.writeString(turnover);
         parcel.writeString(overview);
         parcel.writeString(servicesProvided);
         parcel.writeString(servicesRequired);

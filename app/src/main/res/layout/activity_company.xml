@@ -7,24 +7,6 @@
     android:orientation="vertical"
     tools:context=".CompanyActivity">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="150sp"
-        android:id="@+id/company_card"
-        android:backgroundTint="#6500FF">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="assist-co"
-        android:textSize="50sp"
-        android:textColor="#fff"
-        android:fontFamily="@font/product_sans"
-        android:textAlignment="center"
-        android:layout_marginTop="35dp"/>
-
-</androidx.cardview.widget.CardView>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,8 +51,12 @@
                 android:id="@+id/email_company"
                 android:clickable="false"
                 android:cursorVisible="false"
+                android:textColorLink="@color/colorUniversal"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:linksClickable="true"
+                android:onClick="goToEmail"
+                android:autoLink="email"
                 android:inputType="textPersonName"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -136,19 +122,15 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Website"
+                android:hint="Turnover"
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
-                android:id="@+id/website_company"
+                android:id="@+id/turnover_company"
                 android:textColorLink="@color/colorUniversal"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="goToWebsite"
-                android:linksClickable="true"
-                android:autoLink="web"
-                android:inputType="textEmailAddress"/>
+                android:focusableInTouchMode="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,13 +160,54 @@
                 android:id="@+id/phone_company"
                 android:clickable="false"
                 android:cursorVisible="false"
+                android:textColorLink="@color/colorUniversal"
+                android:onClick="goToPhone"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:linksClickable="true"
+                android:autoLink="phone"
                 android:inputType="phone"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10sp"
+        android:layout_marginStart="10sp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintEnabled="true"
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/colorUniversal"
+        app:boxStrokeColor="@color/colorUniversal"
+        android:paddingStart="10sp"
+        android:paddingEnd="10sp"
+        app:boxCornerRadiusBottomEnd="5sp"
+        app:boxCornerRadiusBottomStart="5sp"
+        app:boxCornerRadiusTopEnd="5sp"
+        app:boxCornerRadiusTopStart="5sp"
+        app:boxStrokeWidth="2dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Website"
+            android:inputType="textWebEmailAddress"
+            android:fontFamily="@font/product_sans"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:id="@+id/website_company"
+            android:onClick="goToWebsite"
+            android:linksClickable="true"
+            android:autoLink="web"
+            android:textColorLink="@color/colorUniversal"
+            android:textColor="@color/colorUniversal"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"

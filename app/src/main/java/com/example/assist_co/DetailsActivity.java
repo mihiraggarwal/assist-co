@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class DetailsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private String name, email, phone, year, overview, website, servicesProvided, servicesRequired, password;
+    private String name, email, phone, year, overview, website, servicesProvided, servicesRequired, turnover, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +38,18 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
-
     public void addDetails(View view) {
         TextInputEditText phoneet = findViewById(R.id.phone_details);
         TextInputEditText yearet = findViewById(R.id.year_details);
         TextInputEditText websiteet = findViewById(R.id.website_details);
+        TextInputEditText turnoveret = findViewById(R.id.turnover_details);
         TextInputEditText overviewet = findViewById(R.id.overview_details);
         TextInputEditText servicesProvidedet = findViewById(R.id.servicesProvided_details);
         TextInputEditText servicesRequiredet = findViewById(R.id.servicesRequired_details);
         phone = phoneet.getText().toString();
         year = yearet.getText().toString();
         website = websiteet.getText().toString();
+        turnover = turnoveret.getText().toString();
         overview = overviewet.getText().toString();
         servicesProvided = servicesProvidedet.getText().toString();
         servicesRequired = servicesRequiredet.getText().toString();
@@ -61,12 +62,13 @@ public class DetailsActivity extends AppCompatActivity {
         user_details.put("phone", phone);
         user_details.put("year_of_creation", year);
         user_details.put("website", website);
+        user_details.put("turnover", turnover);
         user_details.put("overview", overview);
         user_details.put("services_provided", servicesProvided);
         user_details.put("services_required", servicesRequired);
         user_details.put("uid", user.getUid());
 
-        if (TextUtils.isEmpty(year) || TextUtils.isEmpty(overview) || TextUtils.isEmpty(website)
+        if (TextUtils.isEmpty(year) || TextUtils.isEmpty(overview) || TextUtils.isEmpty(website) || TextUtils.isEmpty(turnover)
         || TextUtils.isEmpty(servicesProvided) || TextUtils.isEmpty(servicesRequired) || TextUtils.isEmpty(phone)){
             Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
         }

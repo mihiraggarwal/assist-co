@@ -44,11 +44,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone Number"
+                android:hint="Website"
                 android:fontFamily="@font/product_sans"
                 android:textColor="@color/colorUniversal"
-                android:id="@+id/phone_details"
-                android:inputType="phone"/>
+                android:id="@+id/website_details"
+                android:inputType="textWebEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,63 +82,99 @@
 
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10sp"
-        android:layout_marginStart="10sp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintEnabled="true"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/colorUniversal"
-        app:boxStrokeColor="@color/colorUniversal"
-        android:paddingStart="10sp"
-        android:paddingEnd="10sp"
-        app:boxCornerRadiusBottomEnd="5sp"
-        app:boxCornerRadiusBottomStart="5sp"
-        app:boxCornerRadiusTopEnd="5sp"
-        app:boxCornerRadiusTopStart="5sp"
-        app:boxStrokeWidth="2dp">
+        android:weightSum="100"
+        android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Website"
-            android:inputType="textEmailAddress"
-            android:fontFamily="@font/product_sans"
-            android:id="@+id/website_details"
-            android:textColor="@color/colorUniversal"/>
+            android:layout_marginStart="10sp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintEnabled="true"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/colorUniversal"
+            app:boxStrokeColor="@color/colorUniversal"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp"
+            android:layout_weight="50"
+            app:boxStrokeWidth="2dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:fontFamily="@font/product_sans"
+                android:id="@+id/phone_details"
+                android:textColor="@color/colorUniversal"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10sp"
-        android:layout_marginStart="10sp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:hintEnabled="true"
-        android:layout_marginTop="10dp"
-        android:textColorHint="@color/colorUniversal"
-        app:boxStrokeColor="@color/colorUniversal"
-        android:paddingStart="10sp"
-        android:paddingEnd="10sp"
-        app:boxCornerRadiusBottomEnd="5sp"
-        app:boxCornerRadiusBottomStart="5sp"
-        app:boxCornerRadiusTopEnd="5sp"
-        app:boxCornerRadiusTopStart="5sp"
-        app:boxStrokeWidth="2dp">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Overview"
-            android:inputType="textMultiLine"
-            android:fontFamily="@font/product_sans"
-            android:id="@+id/overview_details"
-            android:textColor="@color/colorUniversal"/>
+            android:layout_marginEnd="10sp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintEnabled="true"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/colorUniversal"
+            app:boxStrokeColor="@color/colorUniversal"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp"
+            android:layout_weight="50"
+            app:boxStrokeWidth="2dp">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Turnover"
+                android:fontFamily="@font/product_sans"
+                android:id="@+id/turnover_details"
+                android:textColor="@color/colorUniversal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10sp"
+            android:layout_marginStart="10sp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintEnabled="true"
+            android:layout_marginTop="10dp"
+            android:textColorHint="@color/colorUniversal"
+            app:boxStrokeColor="@color/colorUniversal"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            app:boxCornerRadiusBottomEnd="5sp"
+            app:boxCornerRadiusBottomStart="5sp"
+            app:boxCornerRadiusTopEnd="5sp"
+            app:boxCornerRadiusTopStart="5sp"
+            app:boxStrokeWidth="2dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Overview"
+                android:inputType="textMultiLine"
+                android:fontFamily="@font/product_sans"
+                android:id="@+id/overview_details"
+                android:textColor="@color/colorUniversal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
